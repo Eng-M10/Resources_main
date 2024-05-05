@@ -91,8 +91,6 @@ app.get("/", async (req, res) => {
 });
 
 
-// const bcrypt = require('bcrypt');
-
 app.post("/login", async (req, res) => {
   try {
     // Retrieve name and password from request body
