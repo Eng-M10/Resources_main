@@ -1,0 +1,18 @@
+meta {
+  name: testar
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/CriarRecursos
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id" :"123",
+    "nome" : "macit2a46"
+  }
+}
