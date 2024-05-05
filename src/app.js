@@ -84,7 +84,7 @@ app.ws('/ws', function (ws, req) {
   });
 });
 
-// Rotas da API HTTP
+// Rotas/EndPoints da API HTTP
 
 app.get("/", async (req, res) => {
   res.status(201).send("Welcome to API!");
