@@ -264,10 +264,12 @@ app.post('/recursos/:id/reservar', verifyToken, async (req, res) => {
     res.status(500).json({ error: 'Error reserving resource' });
   }
 });
-
+// Código no servidor
 app.put('/recursos/:id/devolver', async (req, res) => {
-  const id = (req.params.id);
+  const id = req.params.id;
   const clienteNome = req.headers['x-client-name'];
+
+  console.log("Tentativa de devolução de recurso pelo cliente:", clienteNome);
 
   try {
     // Find client by name
@@ -276,6 +278,8 @@ app.put('/recursos/:id/devolver', async (req, res) => {
         nome: clienteNome,
       },
     });
+
+    console.log("Cliente encontrado:", cliente);
 
     if (!cliente) {
       return res.status(404).json({ message: 'Cliente não encontrado' });
@@ -290,6 +294,8 @@ app.put('/recursos/:id/devolver', async (req, res) => {
       },
     });
 
+    console.log("Recurso reservado pelo cliente:", reservedResource);
+
     if (!reservedResource) {
       return res.status(400).json({ message: 'Recurso não encontrado ou não reservado por este cliente' });
     }
@@ -303,9 +309,12 @@ app.put('/recursos/:id/devolver', async (req, res) => {
       },
     });
 
+    console.log("Recurso devolvido com sucesso!");
+
     res.json({ message: `Recurso com ID ${id} devolvido com sucesso!` });
   } catch (error) {
     // Handle errors
+    console.error("Erro ao devolver recurso:", error);
     res.status(500).json({ error: 'Erro ao devolver recurso' });
   }
 });
